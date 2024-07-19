@@ -3,8 +3,8 @@
 # Tree class that holds all methods related to the creation and maintenance of a balanced binary search tree
 class Tree
   def initialize(array)
-    @root = build_tree
     @data = array.sort.uniq
+    @root = build_tree
   end
 
   def build_tree(arr = @data, start_index = 0, end_index = @data.length - 1)
@@ -12,8 +12,14 @@ class Tree
 
     mid = (start_index + end_index) / 2
     node = Node.new(arr[mid])
-    node.left = build_tree(arr, start_index, mid - 1)
-    node.right = build_tree(arr, mid + 1, end_index)
+    node.left_child = build_tree(arr, start_index, mid - 1)
+    node.right_child = build_tree(arr, mid + 1, end_index)
     node
+  end
+
+  def pretty_print(node = @root, prefix = '', is_left: true)
+    pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
+    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
+    pretty_print(node.left_child, "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true) if node.left_child
   end
 end
