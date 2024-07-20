@@ -56,6 +56,17 @@ class Tree
     min_val
   end
 
+  def find(value, node = @root)
+    return nil if node.nil?
+    return node if value == node.value
+
+    if value < node.value
+      find(value, node.left_child)
+    elsif value > node.value
+      find(value, node.right_child)
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
