@@ -117,11 +117,11 @@ class Tree
     block_given? ? block.call(node) : result << node.value
   end
 
-  def height(node = @root, height = 0)
+  # height returns -1 if the node isn't present or height value if it is
+  def height(node = @root, height = -1)
     return height if node.nil?
 
-    height += 1
-    [height(node.left_child, height), height(node.right_child, height)].max
+    [height(node.left_child, height), height(node.right_child, height)].max + 1
   end
 
   def pretty_print(node = @root, prefix = '', is_left: true)
