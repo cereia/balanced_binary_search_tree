@@ -67,15 +67,19 @@ class Tree
     end
   end
 
+  # the &block is an explicit block so the block can be captured and used in subsequent calls of this method
+  # using implicit block would only call the block once and every subsequent call would return nothing
   def level_order_recursive(node = @root, queue = [], result = [], &block)
     return result if node.nil?
 
-    block_given? ? yield(node) : result << node.value
+    # either yield(node) or block.call(node) can be used but block.call(node) preferred for clarity with explicit block
+    block_given? ? block.call(node) : result << node.value
     queue << node.left_child if node.left_child
     queue << node.right_child if node.right_child
     level_order_recursive(queue.shift, queue, result, &block)
   end
 
+  # implicit block is used here because this is an iterative method so no need to pass the block over and over again
   def level_order_iterative
     queue = [@root]
     result = []
