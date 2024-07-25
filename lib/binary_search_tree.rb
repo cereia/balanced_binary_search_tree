@@ -117,6 +117,13 @@ class Tree
     block_given? ? block.call(node) : result << node.value
   end
 
+  def height(node = @root, height = 0)
+    return height if node.nil?
+
+    height += 1
+    [height(node.left_child, height), height(node.right_child, height)].max
+  end
+
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"

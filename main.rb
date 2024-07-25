@@ -7,16 +7,17 @@ tree = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 tree.insert(13)
 tree.insert(10)
 # tree.delete(8)
-p tree.find(43)
-puts "find return: #{tree.find(9)}"
-p tree.level_order_recursive
+# p tree.find(43)
+# puts "find return: #{tree.find(9)}"
+# p tree.level_order_recursive
 # tree.level_order_recursive { |node| puts "current node value: #{node}" }
-p tree.level_order_iterative
+# p tree.level_order_iterative
 # tree.level_order_iterative { |node| puts "current node value: #{node}" }
-p tree.inorder
+# p tree.inorder
 # tree.inorder { |node| puts "in order: #{node}" }
-p tree.preorder
-p tree.postorder
+# p tree.preorder
+# p tree.postorder
+puts tree.height(tree.find(9))
 tree.pretty_print
 
 # test = Tree.new([20, 30, 40, 50, 60, 70, 80])
