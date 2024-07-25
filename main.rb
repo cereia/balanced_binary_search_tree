@@ -15,6 +15,7 @@ p tree.level_order_iterative
 # tree.level_order_iterative { |node| puts "current node value: #{node}" }
 p tree.inorder
 # tree.inorder { |node| puts "in order: #{node}" }
+p tree.preorder
 tree.pretty_print
 
 # test = Tree.new([20, 30, 40, 50, 60, 70, 80])
