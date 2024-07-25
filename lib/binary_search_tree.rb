@@ -67,13 +67,13 @@ class Tree
     end
   end
 
-  def level_order_recursive(node = @root, queue = [], result = [])
+  def level_order_recursive(node = @root, queue = [], result = [], &block)
     return result if node.nil?
 
     block_given? ? yield(node) : result << node.value
     queue << node.left_child if node.left_child
     queue << node.right_child if node.right_child
-    level_order_recursive(queue.shift, queue, result)
+    level_order_recursive(queue.shift, queue, result, &block)
   end
 
   def level_order_iterative

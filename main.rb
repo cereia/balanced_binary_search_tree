@@ -10,7 +10,9 @@ tree.insert(10)
 p tree.find(43)
 puts "find return: #{tree.find(9)}"
 p tree.level_order_recursive
+# tree.level_order_recursive { |node| puts "current node value: #{node}" }
 p tree.level_order_iterative
+# tree.level_order_iterative { |node| puts "current node value: #{node}" }
 
 tree.pretty_print
 
