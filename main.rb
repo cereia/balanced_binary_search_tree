@@ -9,6 +9,8 @@ tree.insert(10)
 # tree.delete(8)
 p tree.find(43)
 puts "find return: #{tree.find(9)}"
+p tree.level_order_recursive
+p tree.level_order_iterative
 
 tree.pretty_print
 
