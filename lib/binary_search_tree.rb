@@ -93,6 +93,14 @@ class Tree
     result
   end
 
+  def inorder(node = @root, result = [], &block)
+    return result if node.nil?
+
+    inorder(node.left_child, result, &block)
+    block_given? ? block.call(node) : result << node.value
+    inorder(node.right_child, result, &block)
+  end
+
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
