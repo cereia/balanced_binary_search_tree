@@ -136,6 +136,22 @@ class Tree
     end
   end
 
+  # checks if a tree is balanced
+  # check that the difference between the heights of the left and right subtrees of every node is not more than 1
+  def balanced?
+    nodes = leaf_nodes
+    depths = nodes.map { |leaf| depth(leaf) }
+    (depths.max - depths.min).between?(-1, 1)
+  end
+
+  # look for all the leaf nodes and find the distance from root to each leaf node
+  def leaf_nodes
+    leafs = []
+
+    inorder { |node| leafs << node if node.left_child.nil? && node.right_child.nil? }
+    leafs
+  end
+
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
