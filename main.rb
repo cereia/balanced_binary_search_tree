@@ -17,7 +17,10 @@ tree.insert(10)
 # tree.inorder { |node| puts "in order: #{node}" }
 # p tree.preorder
 # p tree.postorder
-puts tree.height(tree.find(9))
+# puts "height of node with val 9: #{tree.height(tree.find(9))}"
+# puts "depth of node with val 9: #{tree.depth(tree.find(9))}"
+# puts "depth of node with val 43: #{tree.depth(tree.find(43))}"
+# puts "depth default: #{tree.depth}"
 tree.pretty_print
 
 # test = Tree.new([20, 30, 40, 50, 60, 70, 80])

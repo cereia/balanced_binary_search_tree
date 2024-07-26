@@ -124,6 +124,18 @@ class Tree
     [height(node.left_child, height), height(node.right_child, height)].max + 1
   end
 
+  # depth returns the number of nodes there are from root to chosen node
+  def depth(node = @root, parent = @root, depth = 0)
+    return depth if node == parent
+    return -1 if node.nil?
+
+    if node.value < parent.value
+      depth(node, parent.left_child, depth + 1)
+    elsif node.value > parent.value
+      depth(node, parent.right_child, depth + 1)
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
