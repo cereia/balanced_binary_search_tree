@@ -12,8 +12,9 @@ tree.insert(432)
 # tree.delete(5)
 # tree.delete(23)
 # tree.delete(8)
-# p tree.find(43)
-# puts "find return: #{tree.find(9)}"
+p tree.find(43)
+puts "find return: #{tree.find(432)}"
+puts "find return: #{tree.find(9)}"
 # p tree.level_order_recursive
 # tree.level_order_recursive { |node| puts "current node value: #{node}" }
 # p tree.level_order_iterative
@@ -28,9 +29,9 @@ puts "height of node with val 9: #{tree.height(tree.find(9))}"
 # puts "depth default: #{tree.depth}"
 puts "balanced? #{tree.balanced?}"
 tree.pretty_print
-tree.rebalance
-puts "balanced? #{tree.balanced?}"
-tree.pretty_print
+# tree.rebalance
+# puts "balanced? #{tree.balanced?}"
+# tree.pretty_print
 
 # test = Tree.new([20, 30, 40, 50, 60, 70, 80])
 # test.delete(50)

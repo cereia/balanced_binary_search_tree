@@ -62,11 +62,7 @@ class Tree
     return nil if node.nil?
     return node if value == node.value
 
-    if value < node.value
-      find(value, node.left_child)
-    elsif value > node.value
-      find(value, node.right_child)
-    end
+    value < node.value ? find(value, node.left_child) : find(value, node.right_child)
   end
 
   # the &block is an explicit block so the block can be captured and used in subsequent calls of this method
