@@ -46,21 +46,6 @@ class Tree
     node
   end
 
-  def delete_single_child(node)
-    node.right_child || node.left_child
-  end
-
-  def delete_double_child(node)
-    node.value = inorder_value(node.right_child).value
-    node.right_child = delete(node.value, node.right_child)
-  end
-
-  def inorder_value(node)
-    # gets the leftmost child node
-    node = node.left_child until node.left_child.nil?
-    node
-  end
-
   def find(value, node = @root)
     return nil if node.nil?
     return node if value == node.value
@@ -154,5 +139,22 @@ class Tree
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
     pretty_print(node.left_child, "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true) if node.left_child
+  end
+
+  private
+
+  def delete_single_child(node)
+    node.right_child || node.left_child
+  end
+
+  def delete_double_child(node)
+    node.value = inorder_value(node.right_child).value
+    node.right_child = delete(node.value, node.right_child)
+  end
+
+  def inorder_value(node)
+    # gets the leftmost child node
+    node = node.left_child until node.left_child.nil?
+    node
   end
 end
