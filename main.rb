@@ -4,15 +4,17 @@ require_relative 'lib/node'
 require_relative 'lib/binary_search_tree'
 
 tree = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-tree.insert(13)
-tree.insert(10)
-tree.insert(432)
+tree.pretty_print
+# tree.insert(13)
+# tree.insert(10)
+# tree.insert(432)
 # tree.insert(2)
 # tree.insert(6)
-# tree.delete(5)
+tree.delete(5)
 # tree.delete(23)
-# tree.delete(8)
-p tree.find(43)
+tree.delete(8)
+# p tree.find(43)
+tree.delete(3)
 puts "find return: #{tree.find(432)}"
 puts "find return: #{tree.find(9)}"
 # p tree.level_order_recursive

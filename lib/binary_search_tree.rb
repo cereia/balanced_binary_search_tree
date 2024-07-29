@@ -31,7 +31,7 @@ class Tree
   end
 
   def delete(value, node = @root)
-    return node if node.nil?
+    return nil if find(value).nil?
 
     if value < node.value
       node.left_child = delete(value, node.left_child)
@@ -39,23 +39,27 @@ class Tree
       node.right_child = delete(value, node.right_child)
     else
       # when one or both children are nil, return the non-nil child if one exists
-      return node.right_child || node.left_child if node.left_child.nil? || node.right_child.nil?
+      return delete_single_child(node) if node.left_child.nil? || node.right_child.nil?
 
       # if both children are not nil, the node's value is set to the min value of the node's right descendants
-      node.value = min_value(node.right_child)
-      node.right_child = delete(node.value, node.right_child)
+      delete_double_child(node)
     end
     node
   end
 
-  def min_value(node)
-    min_val = node.value
-    # while there is a left child, min value is set to that left child
-    while node.left_child
-      min_val = node.left_child.value
-      node = node.left_child
-    end
-    min_val
+  def delete_single_child(node)
+    node.right_child || node.left_child
+  end
+
+  def delete_double_child(node)
+    node.value = leftmost_leaf_descendant(node.right_child).value
+    node.right_child = delete(node.value, node.right_child)
+  end
+
+  def leftmost_leaf_descendant(node)
+    # gets the leftmost child node
+    node = node.left_child until node.left_child.nil?
+    node
   end
 
   def find(value, node = @root)
