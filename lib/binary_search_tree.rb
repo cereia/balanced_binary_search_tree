@@ -7,13 +7,15 @@ class Tree
     @root = build_tree
   end
 
-  def build_tree(arr = @data, start_index = 0, end_index = @data.length - 1)
-    return nil if start_index > end_index
+  def build_tree(arr = @data)
+    return nil if arr.empty?
 
-    mid = (start_index + end_index) / 2
+    mid = (arr.length - 1) / 2
     node = Node.new(arr[mid])
-    node.left_child = build_tree(arr, start_index, mid - 1)
-    node.right_child = build_tree(arr, mid + 1, end_index)
+
+    node.left_child = build_tree(arr[0...mid])
+    node.right_child = build_tree(arr[(mid + 1)..])
+
     node
   end
 
@@ -149,13 +151,9 @@ class Tree
     balanced?(node.left_child) && balanced?(node.right_child)
   end
 
-  # look for all the leaf nodes and find the distance from root to each leaf node
-  # def leaf_nodes
-  #   leafs = []
-
-  #   inorder { |node| leafs << node if node.left_child.nil? && node.right_child.nil? }
-  #   leafs
-  # end
+  def rebalance
+    @root = build_tree(inorder)
+  end
 
   def pretty_print(node = @root, prefix = '', is_left: true)
     pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false) if node.right_child
