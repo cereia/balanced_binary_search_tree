@@ -9,8 +9,4 @@ class Node
     @left_child = nil
     @right_child = nil
   end
-
-  def to_s
-    @value.to_s
-  end
 end
