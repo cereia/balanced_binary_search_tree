@@ -81,18 +81,18 @@ class Tree
   end
 
   # implicit block is used here because this is an iterative method so no need to pass the block over and over again
-  def level_order_iterative
-    queue = [@root]
-    result = []
-    until queue.empty?
+  # def level_order_iterative
+  #   queue = [@root]
+  #   result = []
+  #   until queue.empty?
 
-      node = queue.shift
-      block_given? ? yield(node) : result << node.value
-      queue << node.left_child if node.left_child
-      queue << node.right_child if node.right_child
-    end
-    result
-  end
+  #     node = queue.shift
+  #     block_given? ? yield(node) : result << node.value
+  #     queue << node.left_child if node.left_child
+  #     queue << node.right_child if node.right_child
+  #   end
+  #   result
+  # end
 
   def inorder(node = @root, result = [], &block)
     return result if node.nil?
@@ -130,11 +130,7 @@ class Tree
     return depth if node == parent
     return -1 if node.nil?
 
-    if node.value < parent.value
-      depth(node, parent.left_child, depth + 1)
-    elsif node.value > parent.value
-      depth(node, parent.right_child, depth + 1)
-    end
+    node.value < parent.value ? depth(node, parent.left_child, depth + 1) : depth(node, parent.right_child, depth + 1)
   end
 
   # checks if a tree is balanced

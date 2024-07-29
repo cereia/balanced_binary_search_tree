@@ -27,9 +27,9 @@ puts "find return: #{tree.find(9)}"
 # p tree.preorder
 # p tree.postorder
 puts "height of node with val 9: #{tree.height(tree.find(9))}"
-# puts "depth of node with val 9: #{tree.depth(tree.find(9))}"
-# puts "depth of node with val 43: #{tree.depth(tree.find(43))}"
-# puts "depth default: #{tree.depth}"
+puts "depth of node with val 9: #{tree.depth(tree.find(9))}"
+puts "depth of node with val 43: #{tree.depth(tree.find(43))}"
+puts "depth default: #{tree.depth}"
 puts "balanced? #{tree.balanced?}"
 tree.pretty_print
 # tree.rebalance
