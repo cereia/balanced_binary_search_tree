@@ -20,14 +20,13 @@ class Tree
   end
 
   def insert(value, node = @root)
-    return Node.new(value) if node.nil?
+    return nil if find(value)
 
     if value < node.value
-      node.left_child = insert(value, node.left_child)
+      node.left_child.nil? ? node.left_child = Node.new(value) : insert(value, node.left_child)
     elsif value > node.value
-      node.right_child = insert(value, node.right_child)
+      node.right_child.nil? ? node.right_child = Node.new(value) : insert(value, node.right_child)
     end
-    node
   end
 
   def delete(value, node = @root)
@@ -52,11 +51,11 @@ class Tree
   end
 
   def delete_double_child(node)
-    node.value = leftmost_leaf_descendant(node.right_child).value
+    node.value = inorder_value(node.right_child).value
     node.right_child = delete(node.value, node.right_child)
   end
 
-  def leftmost_leaf_descendant(node)
+  def inorder_value(node)
     # gets the leftmost child node
     node = node.left_child until node.left_child.nil?
     node
